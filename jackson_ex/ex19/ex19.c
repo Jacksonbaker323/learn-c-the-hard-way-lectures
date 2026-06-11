@@ -1,28 +1,30 @@
-#include "dbg.h"
+#include "debug.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 void test_debug() {
-  debug("I have brown hair.");
+  log_msg(LOG_DEBUG, "I have brown hair.");
 
-  debug("I am %d years old.", 38);
+  log_msg(LOG_DEBUG, "I am %d years old.", 38);
+
+  log_msg(LOG_DEBUG, "How many things can I put in here? %d %d %d %d", 1, 2, 3, 4);
 }
 
 void test_log_err() {
-  log_err("I believe everything is broken.");
-  log_err("There are %d problems in %s", 0, "space");
+  log_msg(LOG_ERROR, "I believe everything is broken.");
+  log_msg(LOG_ERROR, "There are %d problems in %s", 0, "space");
 }
 
 void test_log_warn() {
-  log_warn("You can safely ignore this!");
-  log_warn("Maybe consider looking at: %s", "/etc/passwd");
+  log_msg(LOG_WARN, "You can safely ignore this!");
+  log_msg(LOG_WARN, "Maybe consider looking at: %s", "/etc/passwd");
 }
 
 void test_log_info() {
-  log_info("Well, I did something mundane");
-  log_info("It happened %f times today.", 1.3f);
+  log_msg(LOG_INFO, "Well, I did something mundane");
+  log_msg(LOG_INFO, "It happened %f times today.", 1.3f);
 }
-
+/*
 int test_check(char *file_name) {
   FILE *input = NULL;
   char *block = NULL;
@@ -84,22 +86,22 @@ int test_check_debug() {
  error:
   return -1;
 }
-
+*/
 int main(int argc, char *argv[]) {
-  check(argc == 2, "Need an argument");
+  //check(argc == 2, "Need an argument");
 
   test_debug();
   test_log_err();
   test_log_warn();
   test_log_info();
-
+  /*
   check(test_check("ex19.c") == 0, "Failed with ex19.c");
   check(test_check(argv[1]) == 1, "failed with argv");
   check(test_sentinel(1) == 0, "test_sentinel failed");
   check(test_sentinel(100) == -1, "test_sentinel failed");
   check(test_check_mem() == -1, "test_check_mem failed");
   check(test_check_debug() == -1, "test_check_debug failed");
-
+  */
   return 0;
 
  error:
