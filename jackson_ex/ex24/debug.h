@@ -48,4 +48,6 @@ static inline void log_impl(LogLevel level, const char *file, int line, const ch
 #else
     // In debug mode, log everything
     #define log_msg(level, M, ...) log_impl(level, __FILE__, __LINE__, M __VA_OPT__(,) __VA_ARGS__)
+#define check(A, M, ...) if(!(A)) {log_msg(LOG_ERROR, M __VA_OPT__(,) __VA_ARGS__); errno=0; goto error; }
+ 
 #endif
