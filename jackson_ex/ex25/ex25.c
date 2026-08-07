@@ -105,7 +105,8 @@ int main(int argc, char *argv[]) {
   argc--;
   argv++;
 
-  //Why are we instantiating a null string? 
+  //Instantiating an empty array of strings so we can store our file names.
+  //We don't know how big this is going to be so we're not sizing it yet e.g. char *files[10]
   char **files = NULL;
   //Getting a count of the number of files - might have a better variable name here tbh.
   int line_count = load_file_list(&files);
