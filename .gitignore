@@ -7,4 +7,5 @@ Videos
 *.log
 *.db
 tags
-
+build
+*.out
