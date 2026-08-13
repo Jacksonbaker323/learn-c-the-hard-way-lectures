@@ -83,14 +83,26 @@ printf("[DEBUG] Entering load_and_search for: '%s'\n", file);
   size_t len = 0;
   int line_num = 0;
 
+  //New search function path - looking for ALL instances
   while (getline(&line, &len, file_ptr) != -1) {
+    int all_matched = 1; //Set a flag to store the match indicator
+
     line_num++;
     for (int i = 0; i < length; i++) {
-      if (strstr(line, search_terms[i]) != NULL) {
-        printf("Found a match in %s for search term \"%s\" at line %d.\n",file, search_terms[i], line_num);
+      if (strstr(line, search_terms[i]) == NULL) {
+        all_matched = 0;
+        break; //Drop out of the loop if 1 search term is missing to prevent unnecessary searches.
+      }
+      if (all_matched) {
+        printf("Found a match in %s for all terms ", file);
+        for (int j = 0; j < length; j++) {
+          printf("%s ", search_terms[j]);
+        }
+        printf("on line %d. \n", line_num);
       }
     }
   }
+
   free(line);
   fclose(file_ptr);
 

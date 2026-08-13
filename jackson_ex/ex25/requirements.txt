@@ -1,0 +1,9 @@
+Take a sequence of words and search for them across all referenced files
+- [x] Default looks for ALL instances
+- [ ] optionally takes -o to look for ANY
+
+[x] Loads the list of allowed log files from ~/.logfind
+
+[] List of file names can be anything that the glob function allows
+
+[X] Output the matching lines as they are scanned
